@@ -1,25 +1,32 @@
 name: Auto Merge Open Pull Requests
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # 수동 실행
 
 jobs:
   merge_all_prs:
     runs-on: ubuntu-latest
+
+    # 기본적인 권한 설정
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
+      # 1. 코드 체크아웃 (저장소의 모든 파일을 가져옴)
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup GitHub CLI
-        uses: actions/setup-gh@v1
-
+      # 2. 스크립트 실행 (경로 수정됨)
       - name: Run Auto Merge Script
-        run: |
-          # 스크립트에 실행 권한 부여
-          chmod +x merge_prs.sh
-          
-          # 스크립트 실행
-          ./merge_prs.sh
-        # 2단계에서 설정한 PAT를 gh CLI의 환경 변수로 전달합니다.
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
+          # Settings > Secrets and variables > Actions에 저장한 토큰 이름
+          GH_TOKEN: ${{ secrets.GH_ADMIN_TOKEN }}
+        run: |
+          echo "Setting permissions for script..."
+          # 파일이 위치한 정확한 경로를 지정해 권한 부여
+          chmod +x .github/workflows/merge_prs.sh
+          
+          echo "Executing script..."
+          # 파일이 위치한 정확한 경로로 실행
+          ./.github/workflows/merge_prs.sh
