@@ -1,25 +1,17 @@
 name: Auto Merge Open Pull Requests
 
-# 원하는 시점에 수동으로 실행하도록 설정 (workflow_dispatch)
-# 또는 스케줄링하여 정기적으로 실행할 수 있습니다 (cron)
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 1 * * *' # 매일 새벽 1시에 실행
 
 jobs:
   merge_all_prs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        # 스크립트를 가져오기 위해 리포지토리 체크아웃
         uses: actions/checkout@v4
 
-      - name: Install GitHub CLI
-        # GitHub CLI (gh)를 설치 (GitHub Actions 기본 환경에는 이미 설치되어 있을 수 있음)
-        uses: cli/cli-action@v1
-        with:
-          version: 2.x
+      - name: Setup GitHub CLI
+        uses: actions/setup-gh@v1
 
       - name: Run Auto Merge Script
         run: |
