@@ -1,0 +1,20 @@
+package com.google.section04.orverride;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+public class SubClass extends SuperClass {
+
+  /* 오버라이딩 성립 요건
+   *  - 반환형 동일
+   *  - 매서드명 동일
+   *  - 매개 변수(개수, 순서, 타입) 동일
+   *  - finall 메서드는 오버라이딩 불가능
+   *  - private 메서드도 오버라이딩 불가능
+   *  - 접근 제어자는 같거나 넓은 범위
+   *  - 예외 처리 구문은 같거나 좁은 범위
+   * */
+
+
+
+}

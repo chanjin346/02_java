@@ -1,0 +1,31 @@
+package com.google.section01.exception;
+
+public class Application2 {
+
+  public static void main(String[] args) {
+    System.out.println("===== 프로그램 시작 =====");
+
+    ExceptionTest et = new ExceptionTest();
+
+    /* throws 구문이 작성된 메서드를 호출하는 경우
+    *  예외가 던져져서 올 수 있기 때문에
+    *  그에 대한 알맞은 대비(예외 처리)를 해야 한다!!!!! */
+
+    /* throws로 예외 처리 시
+    *  더 이상 예외를 받을 곳이 없다면 "비정상 종료" 된다
+    *  (main에서 throws 될 경우 더 이상 던질 곳이 없음)
+    * */
+
+    /* try : 예외가 발생할 수 있는 구문을 작성하는 블럭 */
+    try {
+      // et.checkEoughMoney(2000, 3000); // 정상
+      et.checkEoughMoney(2000000, 3000); // 예외 발생
+    } catch (Exception e) {
+      /* catch : try에서 던져진 예외를 잡아서 처리하는 블럭
+      * -> 예외가 처리됨 == 예외가 사라짐 -> 프로그램이 다시 정상 동작함
+      * */
+      System.out.println("발생한 Exception 처리 완료");
+    }
+    System.out.println("===== 프로그램 종류 =====");
+  }
+}
